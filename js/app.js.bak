@@ -1,0 +1,107 @@
+'use strict';
+var secretNumber,
+newButton,
+feedback,
+input,
+submit,
+countElement,
+guessList,
+form ,
+userFeedback,
+count,
+guessHtml;
+
+$(document).ready(pageLoad);
+
+
+function pageLoad(){	
+
+	/*--- Display information modal box ---*/
+  	$(".what").click(function(){
+    	$(".overlay").fadeIn(1000);
+
+  	});
+
+  	/*--- Hide information modal box ---*/
+  	$("a.close").click(function(){
+  		$(".overlay").fadeOut(1000);
+  	});
+
+	//vars from DOM
+    newButton= $('a.new');
+	feedback = $('#feedback');
+	input = form.find('#userGuess');
+	submit = ('#guessButton')
+	countElement = $('#count');
+	guessList = $('#guessList');
+	form = $('form');
+
+	//on load
+	playGame();
+
+	form.submit(function(e){
+		e.preventDefault();
+		getUserGuess();
+	});
+	//clear fields when New Game button is clicked
+	//newButton.click(newGame);
+}
+  	
+
+
+
+//plays the game
+function playGame(){
+	form.find('input[type=submit]');
+	newGame();
+	html();
+	secretNumber();
+	}
+
+//Feedback for guesses
+function giveFeedback(){
+	if (secretNumber == userGuess){
+		winner();
+	}  
+}
+
+
+
+
+//Restart game
+function newGame(){
+		count = 0;
+		feedback= "fuck!";
+		input= "";
+		countElement= "";
+		guessList= "";
+}
+
+//html readers
+function html(){
+	guessList.html(guessHtml);
+	countElement.html(count);
+	feedback.html(userFeedback);
+}
+
+function determineFeedback(){
+	findDifference();
+	if (difference > 20) {
+		feedback = "Ice cold";
+	} else if (difference <=20) {
+		feedback = "Getting warmer";
+	} else if (difference <= 10) {
+		feedback = "Oooh, much warmer";
+	} else if (sifference < 5 ) {
+		feedback = "You're burning up!";
+	} else (difference = 0) {
+		feedback = "You got it! You won!";
+	}
+}
+
+function findDifference(){
+	var difference= (secretNumber - userGuess);
+	Math.abs(difference);
+}
+}
+
